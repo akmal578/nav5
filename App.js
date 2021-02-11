@@ -17,7 +17,7 @@ function HomeScreen({navigation}) {
         onPress={() => navigation.navigate('Notifications')}
         title="Go to notifications"
       />
-      <Button onPress={() => navigation.toggleDrawer()} title="Drawer" />
+      <Button onPress={() => navigation.toggleDrawer()} title="Drawer" />y
     </View>
   );
 }
