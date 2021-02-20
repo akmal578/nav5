@@ -7,7 +7,15 @@
  */
 
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Button, View, Image, Text} from 'react-native';
+import {
+  StyleSheet,
+  Button,
+  View,
+  Image,
+  Text,
+  InteractionManager,
+  SafeAreaView,
+} from 'react-native';
 import {
   AccessToken,
   LoginManager,
@@ -16,11 +24,18 @@ import {
   Permissions,
 } from 'react-native-fbsdk';
 
+import RNBootSplash from 'react-native-bootsplash';
 import LoginButton from './LoginButton';
 
 const App = () => {
   const [myData, setData] = useState([]);
   const [pictureURL, setPictureURL] = useState(null);
+
+  //Splash Screen
+  useEffect(() => {
+    RNBootSplash.hide({fade: true});
+    console.log('Bootsplash has been hidden successfully');
+  }, []);
 
   // const ResponseData = [
   //   {
@@ -92,32 +107,34 @@ const App = () => {
   };
   return (
     <View style={styles.container}>
-      <View>
-        {pictureURL && (
-          <Image
-            style={{height: 200, resizeMode: 'contain', margin: 5}}
-            source={{uri: pictureURL}}
-          />
-        )}
-        {!pictureURL && (
-          <Image
-            source={DummyImage}
-            style={{height: 200, resizeMode: 'contain', margin: 5}}
-          />
-        )}
-        {/* <Text>{myData.id}</Text> */}
-        <Text style={styles.text}>{myData.name}</Text>
-        {/* <View>
+      <SafeAreaView>
+        <View>
+          {pictureURL && (
+            <Image
+              style={{height: 200, resizeMode: 'contain', margin: 5}}
+              source={{uri: pictureURL}}
+            />
+          )}
+          {!pictureURL && (
+            <Image
+              source={DummyImage}
+              style={{height: 200, resizeMode: 'contain', margin: 5}}
+            />
+          )}
+          {/* <Text>{myData.id}</Text> */}
+          <Text style={styles.text}>{myData.name}</Text>
+          {/* <View>
           <Text>{pictureURL}</Text>
         </View> */}
-      </View>
-      <View>
-        <LoginButton
-          getData={getData}
-          setData={setData}
-          setPictureURL={setPictureURL}
-        />
-      </View>
+        </View>
+        <View>
+          <LoginButton
+            getData={getData}
+            setData={setData}
+            setPictureURL={setPictureURL}
+          />
+        </View>
+      </SafeAreaView>
     </View>
   );
 };
@@ -128,6 +145,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     padding: 10,
+    backgroundColor: '#000000',
   },
   avatar: {
     alignSelf: 'center',

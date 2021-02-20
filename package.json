@@ -12,6 +12,7 @@
   "dependencies": {
     "react": "16.13.1",
     "react-native": "0.63.4",
+    "react-native-bootsplash": "^3.1.5",
     "react-native-fbsdk": "^3.0.0"
   },
   "devDependencies": {
